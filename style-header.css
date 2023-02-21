@@ -1,0 +1,28 @@
+.page-header{
+	display: block;
+	position: relative;
+	text-align: center;
+	height: 70px;
+	border: none;
+	background: #f2f2f2;
+}
+
+.icon{
+	position: absolute;
+	left: 10px;
+}
+
+.page-header > a.active{
+	background: #c9e4f9;
+}
+
+.page-header > a{
+	display: inline-block;
+	padding: 4px;
+	margin-top: 15px;
+}
+
+.close{
+	float: right;
+	margin-right: 10px;
+}

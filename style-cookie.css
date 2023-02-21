@@ -1,0 +1,41 @@
+#cookie{
+	display: block;
+	font-family: OpenSans, arial, "sans-serif";
+	width: 350px;
+	height: 140px;
+	position: fixed;
+	bottom: 30px;
+	left:30px;
+	border-radius: 3px;
+	color: white;
+	padding: 20px 20px 20px 20px;
+	font-size: 13px;
+	box-sizing: border-box;
+	opacity: 0.75;
+	background: #000;
+}
+
+#cookie .textcookie p{
+	line-height: 20px;
+	padding: 0;
+	margin: 0;
+}
+
+#cookie .cookiebutton{
+	text-align: right;
+	line-height: 10px;
+}
+
+#cookie .cookiebutton a{
+	display: inline-block;
+	text-alight: center;
+	border-radius: 3px;
+	padding: 12px 20px;
+	font-weight: bold;
+   	margin-top: 3px;
+	font-size: 14px;
+	font-weight: bold;
+	box-sizing: border-box;
+	background: #4399fa;
+	border: 1px solid #4399fa;
+}
