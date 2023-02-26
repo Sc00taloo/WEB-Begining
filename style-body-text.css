@@ -6,6 +6,28 @@ h3{
     margin-bottom: 20px;
 }
 
+.u-grey{
+    color: #111111;
+    background-color: #f2f2f2;
+}
+
+.u-black-grey{
+    color: #ffffff;
+    background-color: #333333;
+}
+
+.first-text{
+    position: relative;
+    font-family: 'Open Sans',sans-serif;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 30px auto 0;
+    width: 725px;
+    color: #808080;
+    font-size: 1.25rem;
+}
+
+
 .u-text-1{
     font-style: italic;
     font-size: 6rem;
@@ -26,14 +48,86 @@ h3{
     font-size: 1.3rem;
     font-weight: 400;
     margin: 20px 0 0;
-    line-height: 1.6;
     color: #999999;
     font-family: 'Open Sans',sans-serif;
+}
+
+.u-text-4{
+    line-height: 2;
+    font-size: 1.4rem;
+    margin: 30px 0 0;
+}
+
+.u-text-5{
+    letter-spacing: 0px;
+    font-style: italic;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: none;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.u-text-6{
+    letter-spacing: 0px;
+    font-style: italic;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: none;
+    margin: 39px 0 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.u-text7{
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 1.1;
+    font-style: italic;
+    width: 541px;
+    font-family: 'Playfair Display', serif;
+    margin: 0 auto;
+}
+
+.u-text8{
+    font-size: 1.3rem;
+    width: 400px;
+    margin: 20px auto 0;
+    color: #999999;
+}
+
+.u-text9{
+    letter-spacing: 0px;
+    font-style: italic;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: none;
+    margin: 24px 0 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.u-text10{
+    font-size: 1.3rem;
+    margin: 16px 0 0;
+}
+
+.u-small-text{
+    font-size: 1rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.u-text11{
+    width: 417px;
+    margin-top: 49px;
+    margin-bottom: 49px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .u-cool-text{
     font-style: italic;
     font-size: 3.25rem;
+    line-height: 1.1;
     margin: 0;
     font-weight: 400;
     font-family: 'Playfair Display', serif;

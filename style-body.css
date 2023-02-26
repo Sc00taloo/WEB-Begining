@@ -1,74 +1,45 @@
-h3{
-	font-weight: 400;
-    font-size: 1.25rem;
-    line-height: 1.2;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.first-text{
-    position: relative;
-    font-family: 'Open Sans',sans-serif;
-    letter-spacing: 1px;
+.u-body{
     line-height: 1.6;
-    text-align: center;
-    margin: 30px auto 0;
-    width: 725px;
-    color: #808080;
-    font-size: 1.25rem;
 }
 
-
-.u-text-1{
-    font-style: italic;
-    font-size: 6rem;
-    letter-spacing: 8px;
-    margin: 60px 0 0;
-    font-family: 'Playfair Display', serif;
+.u-line{
+    width: 296px;
+    margin: 39px auto 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-style: solid;
 }
 
-.u-text-2{
-    font-size: 1.3rem;
-    font-weight: 400;
-    color: #999999;
-    margin: 24px 0 0;
-    font-family: 'Open Sans',sans-serif;
-}
-
-.u-text-3{
-    font-size: 1.3rem;
-    font-weight: 400;
-    margin: 20px 0 0;
-    line-height: 1.6;
-    color: #999999;
-    font-family: 'Open Sans',sans-serif;
-}
-
-.u-cool-text{
-    font-style: italic;
-    font-size: 3.25rem;
-    margin: 0;
-    font-weight: 400;
-    font-family: 'Playfair Display', serif;
-}
-
-.u-text-center{
-    text-align: center;
-}
-
-.u-text-left{
-    text-align: left;
-}
-
-.u-line-height{
-    line-height: 1.6;
+.u-link{
+    text-decoration: underline;
+    color: #d5dee5;
+    display: inline-block;
 }
 
 .u-padding{
     padding: 30px;
 }
 
+.u-padding2{
+    padding: 30px 90px;
+}
+
+.u-padding3{
+    padding: 10px;
+}
+
+.u-margin-20{
+    margin: 20px 0 0;
+    font-size: 1.15rem;
+}
+
 .u-clearfix{
+    position: relative;
+}
+
+.u-clearfix1{
+    display: table;
     position: relative;
 }
 
@@ -81,22 +52,10 @@ h3{
     flex-direction: column;
 }
 
-.pic-first{
-	display: block;
-	margin: 30px auto 0;
-	padding: 4px;
-	left: 0;
-	top: 0;
-	object-fit: cover;
-	width: 458px;
-    height: 485px;
-}
-
-.first-hand{
-    display: block;
-    margin: 40px auto 60px;
-    width: 70px;
-    height: 30px;
+.u-address{
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
 }
 
 .u-row{
@@ -107,36 +66,29 @@ h3{
     max-width: 100%;
 }
 
-.u-image{
-    display: block;
-    object-fit: cover;
-    vertical-align: middle;
-    background-size: cover;
-    background-position: 50% 50%;
-}
-.pic-second{
-    padding: 30px;
-    min-height: 619px;
-}
-
-.u-image{
-    display: block;
-    object-fit: cover;
-    vertical-align: middle;
-    background-size: cover;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-}
-
-.u-image1{
-    width: 285px;
-    height: 391px;
-    margin: 0 auto;
+.u-column{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 .u-size-30{
     flex: 0 0 50%;
     max-width: 50%;
+}
+
+.u-size301{
+    flex: 30 0 50%;
+}
+
+.u-size-40{
+    flex: 0 0 66.66%;
+    max-width: 66.66%;
+}
+
+.u-size-20{
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
 }
 
 .u-size-21{
@@ -147,11 +99,6 @@ h3{
 .u-size-39{
     flex: 0 0 65%;
     max-width: 65%;
-}
-
-.u-column{
-    flex-direction: column;
-    min-height: 100%;
 }
 
 .u-size-60{
@@ -183,22 +130,37 @@ h3{
     background-origin: padding-box;
 }
 
+.u-layout-cell-1{
+    min-height: 270px;
+}
+
+.u-layout-cell-2{
+    min-height: 302px;
+}
+
+.u-layout-cell-3{
+    min-height: 120px;
+}
+
 .u-layout-wrap{
     margin-top: 60px;
     margin-bottom: 60px;
 }
 
-.pic-second1{
-    display: block;
-    min-height: 619px;
-    object-fit: cover;
-    vertical-align: middle;
-    background-size: cover;
-    background-position: 50% 50%;
+.u-layout-wrap2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
 .u-sheet{
     position: relative;
     width: 1140px;
     margin: 0 auto;
+}
+
+.u-backlink{
+    position: relative;
+    text-align: center;
+    padding: 1em;
 }

@@ -1,0 +1,108 @@
+.pic-first{
+    display: block;
+    margin: 30px auto 0;
+    padding: 4px;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    width: 458px;
+    height: 485px;
+}
+
+.pic-second1{
+    display: block;
+    min-height: 619px;
+    object-fit: cover;
+    vertical-align: middle;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.u-image{
+    display: block;
+    object-fit: cover;
+    vertical-align: middle;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+.pic-second{
+    padding: 30px;
+    min-height: 619px;
+}
+
+.u-image1{
+    display: block;
+    min-height: 619px;
+    vertical-align: middle;
+    background-size: cover;
+    background-image: url(https://images01.nicepage.io/a1389d7bc73adea1e1c1fb7e/d0a08d412b965fb38caeda91/pexels-photo-6121091.jpeg);
+    background-position: 50% 50%;
+}
+
+.u-image2{
+    display: block;
+    min-height: 619px;
+    vertical-align: middle;
+    background-size: cover;
+    background-image: url(https://images01.nicepage.io/a1389d7bc73adea1e1c1fb7e/c0849f6803655e0baf89c436/pexels-photo-7106266.jpeg);
+    background-position: 50% 50%;
+}
+
+.u-image3{
+    width: 285px;
+    height: 391px;
+    margin: 0 auto;
+}
+
+.u-image4{
+    min-height: 716px;
+    background-image: url(https://images01.nicepage.io/a1389d7bc73adea1e1c1fb7e/dd2a8e286fbf54acbfacbda5/pexels-photo-2611817.jpeg);
+    vertical-align: middle;
+    background-size: cover;
+    background-position: 50.69% 50%;
+}
+
+.u-image5{
+    min-height: 620px;
+    background-image: url(https://images01.nicepage.io/a1389d7bc73adea1e1c1fb7e/06d83ac3fdcd5d22a7811438/pexels-photo-1457847.jpeg);
+    vertical-align: middle;
+    background-size: cover;
+    background-position: 50.69% 50%;
+}
+
+.u-image6{
+    min-height: 790px;
+    background-image: url(https://images03.nicepage.io/a1389d7bc73adea1e1c1fb7e/2bbf65653b02501382e8d2a4/pexelsphoto709767.jpg);
+    vertical-align: middle;
+    background-size: cover;
+    background-position: 50.69% 50%;
+}
+
+.u-image7{
+    min-height: 790px;
+    background-image: url(https://images03.nicepage.io/a1389d7bc73adea1e1c1fb7e/e45d2553fa56571885c20c99/pexelsphoto2101345.jpg);
+    vertical-align: middle;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.first-hand{
+    display: block;
+    margin: 40px auto 60px;
+    width: 70px;
+    height: 30px;
+}
+
+.second-arrow{
+    display: block;
+    height: 30px;
+    width: 70px;
+    margin: 25px auto 0 0;
+}
+
+.tree-arrow{
+    display: block;
+    height: 30px;
+    width: 70px;
+    margin: 20px auto 0;
+}
