@@ -1,0 +1,29 @@
+.u-block-one{
+    text-align: center;
+    height: 20px;
+    width: 203px;
+    background: #D68800;
+    border: 1px solid #000;
+}
+
+.u-line{
+    border-bottom: 1px solid #000;
+}
+
+table{
+    text-align: center;
+    width: 200px;
+    height: 140px;
+    border: 1px solid #000;
+    background: white;
+}
+
+.u-center{
+    text-align: center;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}

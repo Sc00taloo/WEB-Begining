@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Assignments JS</title>
+    <link rel="stylesheet" href="style-button.css">
+    <script>
+        function data_time(){
+            let data = new Date();
+            let days = ['Sun','Mon','Tue','Web','Thu','Fri','Sat'];
+            let hours = data.getHours();
+            let minutes = data.getMinutes();
+            let seconds = data.getSeconds();
+            let day1 = data.getDay();
+            let month = data.getMonth();
+            let year = data.getFullYear();
+            let day = data.getDate();
+            let ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0'+minutes : minutes;
+            month = month + 1;
+            month = month < 10 ? '0'+month : month;
+            let strTime = day + '-' + month + '-' + year + ', ' + days[day1] + ' / ' + hours + '/' + minutes + '/' + seconds + ' ' + ampm;
+            document.getElementById('DT').innerHTML = strTime;
+        }
+        function cal(){
+            let html = '<div class="flex">';
+            let days = ['Mon','Tue','Web','Thu','Fri','Sat','Sun'];
+            let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            let now = new Date();
+            now.setDate(1);
+            let dayOfWeek = now.getDay();
+            if (dayOfWeek == 0){
+                dayOfWeek = 7;
+                alert(dayOfWeek);
+            }
+            html += '<div class="u-block-one">' + months[now.getMonth()] + '</div>';
+            html += '<table>';
+            html += '<tr>';
+            for (let i = 0; i <= 6; ++i){
+                html += ('<td class="u-line">' + days[i] + '</td>');
+            }
+            html += '</tr>';
+            for(let i = 2 - dayOfWeek; i <= 43 - dayOfWeek; ++i){
+                if ((i - 1 + dayOfWeek) % 7 == 1){
+                   html += '<tr>';
+                }
+
+                if (i == -1){
+                    html += ('<td style="color: #D4D4D4">' + '27' + '</td>');
+                }
+                else if (i == 0){
+                    html += ('<td style="color: #D4D4D4">' + '28' + '</td>');
+                }
+                else if (i > 31){
+                    html += ('<td style="color: #D4D4D4">' + (i - 31) + '</td>');
+                }
+                else{
+                    if(i == 4 || i == 5 || i == 11 || i == 12 || i==18 || i==19 || i==25 || i == 26){
+                        html += ('<td style="background: #E94E4E">' + i + '</td>');
+                    }
+                    else{
+                        html += ('<td>' + i + '</td>');
+                    }
+                }
+
+                if ((i - 1 + dayOfWeek) % 7 == 0){
+                    html +='</tr>';
+                }
+            }
+            html +='</table>';
+            html +='</div>';
+            document.getElementById('Cal').innerHTML = html;
+        }
+        function dom(){
+            const myElement = document.querySelector('table')
+        }
+    </script>
+</head>
+<body style="margin: 5px; background: #FFE4B5;">
+    <h1>Задания по JS</h1>
+    <div>
+        <button onmousedown="setInterval(data_time, 1000)">Задание 1 - Дата/Время</button>
+        <p id="DT"></p>
+    </div>
+
+    <div>
+        <button onmousedown="cal()">Задание 2 - Календарь</button>
+        <p id="Cal"></p>
+    </div>
+
+    <div>
+        <button onmousedown="dom()">Задание 3 - Нахождение элементов в DOM – дереве</button>
+        <p id="DOM"></p>
+    </div>
+</body>
+</html>
