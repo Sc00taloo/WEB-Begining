@@ -6,11 +6,40 @@
     border: 1px solid #000;
 }
 
+#h3{
+    display: none;
+}
+
+.array{
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    background: #4399fa;
+}
+
+#Inv{
+    display: none;
+}
+
+#FOLD{
+    display: none;
+}
+
+.none{
+    display: none;
+}
+
 .u-line{
     border-bottom: 1px solid #000;
 }
 
-table{
+.u-image-maxwell{
+    position: relative;
+    width: 314px;
+    height: 206px;
+}
+
+.u-calendar{
     text-align: center;
     width: 200px;
     height: 140px;
@@ -22,8 +51,27 @@ table{
     text-align: center;
 }
 
-.flex{
+.flex_column{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+#sloi1{
+    position: relative;
+    top: 100px;
+    left: 100px;
+}
+
+.sloi2{
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-image: url("Pictures/Eyebrow.jpeg");
+    transition: opacity 2.5s;
+    opacity: 1;
+}
+
+.sloi2:hover{
+    opacity: 0;
 }

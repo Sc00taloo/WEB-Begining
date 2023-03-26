@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Assignments JS</title>
     <link rel="stylesheet" href="style-button.css">
+    <link rel="stylesheet" href="style-worksheet.css">
     <script>
         function data_time(){
             let data = new Date();
@@ -23,9 +24,10 @@
             month = month < 10 ? '0'+month : month;
             let strTime = day + '-' + month + '-' + year + ', ' + days[day1] + ' / ' + hours + '/' + minutes + '/' + seconds + ' ' + ampm;
             document.getElementById('DT').innerHTML = strTime;
+            setInterval(data_time, 1000);
         }
         function cal(){
-            let html = '<div class="flex">';
+            let html = '<div class="flex_column">';
             let days = ['Mon','Tue','Web','Thu','Fri','Sat','Sun'];
             let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
             let now = new Date();
@@ -36,7 +38,7 @@
                 alert(dayOfWeek);
             }
             html += '<div class="u-block-one">' + months[now.getMonth()] + '</div>';
-            html += '<table>';
+            html += '<table class="u-calendar">';
             html += '<tr>';
             for (let i = 0; i <= 6; ++i){
                 html += ('<td class="u-line">' + days[i] + '</td>');
@@ -76,23 +78,354 @@
         function dom(){
             const myElement = document.querySelector('table')
         }
+
+        function Invisible(){
+            let i = 0;
+            document.getElementById('Inv').style.display = "flex";
+            document.getElementById('Kostil').style.display = "none";
+            let div = document.querySelectorAll(".hidden");
+            let arr = new Array(div.length).fill(0).map((_,i) => i).sort(() => Math.random() - 0.5);
+            setTimeout(function (){InvisibleBlock(i,div,arr);}, 120);
+        }
+        function InvisibleBlock(i, div, arr){
+            let rand_div = div[arr[i]];
+            rand_div.style.display = "none";
+            ++i;
+            if (i < 7){
+                setTimeout(function (){InvisibleBlock(i,div,arr);}, 120);
+            }
+            else{
+                document.getElementById('Kostil').style.display = "block";
+                document.getElementById('Inv').style.display = "none";
+                for(let j = 0; j < 7; ++j){
+                    let rand_div = div[arr[j]];
+                    rand_div.style.display = "block";
+                }
+            }
+        }
+
+        function create(){
+            let html = '<ul id="list">';
+            document.getElementById('Cre').innerHTML = html;
+            create_li(html);
+        }
+        function create_li(html){
+            let test = prompt("Test");
+            if (test != null){
+                html += '<li>';
+                html += test;
+                html += '</li>'
+                document.getElementById('Cre').innerHTML = html;
+                setTimeout(function(){create_li(html)}, 1);
+            }
+            else{
+                html += '</ul>'
+                document.getElementById('Cre').innerHTML = html;
+                if (document.getElementById('list').children.length < 1){
+                    return;
+                }
+                let flag = confirm("Хотите удалить элементы?");
+                if (flag){
+                    setTimeout(delete_li, 1);
+                }
+                else{
+                    return 0;
+                }
+            }
+        }
+        function delete_li(){
+            let test = prompt("Какой элемент хотите удалить? (Введите число)");
+            test = Number(test);
+            test -= 1;
+            if(test == -1){
+                return;
+            }
+            else if (Number.isInteger(test)) {
+                test += 1;
+                let flag = confirm("Вы хотите удалить элемент под номером " + test + "?");
+                test -= 1;
+                if (flag) {
+                    if (document.getElementById('list').children.length > test){
+                        let li = document.querySelector('li');
+                        const parent = li.parentNode;
+                        parent.removeChild(parent.children[test]);
+                        setTimeout(delete_li, 1);
+                    }
+                    else{
+                        alert("Нет такого элемента!");
+                        setTimeout(delete_li, 1);
+                    }
+                }
+                else{
+                    setTimeout(delete_li, 1);
+                }
+            }
+            else{
+                alert("Введите число!");
+                setTimeout(delete_li, 1);
+            }
+        }
+
+        function move(){
+            let move = 20;
+            document.getElementById('MOVE').style.display = "block";
+            let img = document.getElementById('MOVE');
+            img.onmouseover = function (event){
+                this.style.right = move + "px";
+                move += 20;
+                if (this.style.right == "860px"){
+                    this.style.right = "0px";
+                    move = 0;
+                }
+            }
+        }
+
+        function folding(){
+            document.getElementById('FOLD').style.display = "block";
+            let click = document.getElementById('FOLD');
+            let click1 = document.getElementById('pie');
+            let click2 = document.getElementById('candy');
+            let click3 = document.getElementById('cake');
+            click.onmousedown = function (e){
+                let div = document.querySelectorAll(".none");
+                document.getElementById('h3').style.display = "none";
+                click1.style.opacity = "1";
+                click2.style.opacity = "1";
+                click3.style.opacity = "1";
+                let arr = new Array(div.length).fill(0).map((_,i) => i).sort(() => Math.random() - 0.5);
+                for (let i = 0; i < 3; ++i){
+                    let rand_div = div[arr[i]];
+                    rand_div.style.display = "block";
+                }
+                setTimeout(function (){prov(click1, click2, click3)},100);
+            }
+            click1.onmousedown = function (e){
+                let opa = "0.8";
+                let click = document.getElementById('pie');
+                document.getElementById('pie').style.opacity = opa;
+                setTimeout(function (){Invesibility(opa, click);}, 500);
+            }
+            click2.onmousedown = function (ev){
+                let opa = "0.8";
+                let click = document.getElementById('candy');
+                document.getElementById('candy').style.opacity = opa;
+                setTimeout(function (){Invesibility(opa, click);}, 500);
+            }
+            click3.onmousedown = function (eve){
+                let opa = "0.8";
+                let click = document.getElementById('cake');
+                document.getElementById('cake').style.opacity = opa;
+                setTimeout(function (){Invesibility(opa, click);}, 200);
+            }
+        }
+        function Invesibility(opa, click){
+            if (click.style.opacity < 0.1){
+                click.style.display = "none";
+            }
+            else{
+                Number(opa);
+                opa -= 0.2;
+                String(opa);
+                click.style.opacity = opa;
+                setTimeout(function (){Invesibility(opa, click);}, 200);
+            }
+        }
+        function prov(click1, click2, click3){
+            if (click1.style.display=="none" && click2.style.display=="none" && click3.style.display=="none"){
+                document.getElementById('h3').style.display = "block";
+            }
+            else{
+                setTimeout(function (){prov(click1, click2, click3)},1);
+            }
+        }
+
+        function screen_pic() {
+            let img = document.getElementById("PT");
+            document.getElementById('sloi1').style.display = "block";
+            img.style.display = "block";
+        }
+
+        function anketa(){
+            document.getElementById("ANK").style.display = "block";
+        }
+
+
     </script>
 </head>
-<body style="margin: 5px; background: #FFE4B5;">
+<body style="margin: 5px; background: #FFE4B5; max-width: 960px;">
     <h1>Задания по JS</h1>
     <div>
-        <button onmousedown="setInterval(data_time, 1000)">Задание 1 - Дата/Время</button>
+        <button onclick="setTimeout(data_time)">Задание 1 - Дата/Время</button>
         <p id="DT"></p>
     </div>
 
     <div>
-        <button onmousedown="cal()">Задание 2 - Календарь</button>
+        <button onclick="cal()">Задание 2 - Календарь</button>
         <p id="Cal"></p>
     </div>
 
     <div>
-        <button onmousedown="dom()">Задание 3 - Нахождение элементов в DOM – дереве</button>
+        <button onclick="dom()">Задание 3 - Нахождение элементов в DOM – дереве (Только форм)</button>
         <p id="DOM"></p>
+    </div>
+
+    <div>
+        <button onclick="setTimeout(Invisible)">Задание 4 - Через указанный промежуток времени 120мс удалять из видимости один из
+            блоков (номер блока выбирается рандомно)</button>
+        <p id="Kostil"></p>
+        <div id="Inv" class="u-center">
+            <div class="array hidden">0</div>
+            <div class="array hidden">1</div>
+            <div class="array hidden">2</div>
+            <div class="array hidden">3</div>
+            <div class="array hidden">4</div>
+            <div class="array hidden">5</div>
+            <div class="array hidden">6</div>
+        </div>
+    </div>
+
+    <div>
+        <button onclick="create()">Задание 5 - Напишите скрипт для создания элемента согласно варианту(li в список ul; Смена местами двух соседних элементов)</button>
+        <p id="Cre"></p>
+    </div>
+
+    <div>
+        <button onclick="move()">Задание 6 - Организовать обработку события, согласно действию: Наведение курсора мыши на объект; Сдвиг объекта на 20px влево</button>
+        <p align="right">
+            <img id="MOVE" class="u-image-maxwell" src="Pictures/maxwell.png" style="display: none;">
+        </p>
+    </div>
+
+    <div>
+        <button onclick="folding()">Задание 7 - Создайте меню, которое раскрывается/сворачивается при клике</button>
+        <p></p>
+        <h2 id="FOLD">Здесь сладости (нажми меня!)</h2>
+        <p id="pie" class="none">Пирожок</p>
+        <p id="candy" class="none">Конфеты</p>
+        <p id="cake" class="none">Тортик</p>
+        <h3 id="h3">Сладости закончились =( </h3>
+    </div>
+
+    <div>
+        <button onclick="screen_pic()">Задание 8 - Используя функцию setTimeout и статический фильтр alpha, создайте картинку, которая будет
+            плавно проявляться на экране (как если бы использовался фильтр blendtrans).
+            Необходимо, чтобы при наведении указателя мыши картинка плавно становилась прозрачнее и
+            проявлялся текст, расположенный за картинкой. Как только указатель мыши выйдет за пределы
+            картинки, она должна снова плавно стать непрозрачной.</button>
+        <div id="">
+            <a id="sloi1" style="display: none">Вас заметили</a>
+            <img id="PT" class="sloi2" src="Pictures/Eyebrow.jpeg" style="display: none;">
+            <p></p>
+        </div>
+    </div>
+
+    <div>
+        <button onclick="anketa()">Задание 9 - Регулярные выражения</button>
+        <p></p>
+        <div id="ANK" class="u-background" style="display: none">
+            <h2 class="u-center">Регистрация</h2>
+            <div class="flex_column">
+                <fomr action="">
+                    <table class="u-registr">
+                    <tr>
+                        <td width="170px" valign="top">
+                            <label for="fname1">Login: </label>
+                        </td>
+                        <td>
+                            <input type="text" id="fname1" name="fname" value="">
+                            <span class="u-regstar">*</span><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="fname2">Фамилия: </label>
+                        </td>
+                        <td>
+                            <input type="text" id="fname2" name="fname" value="">
+                            <span class="u-regstar">*</span><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="fname3">Имя: </label>
+                        </td>
+                        <td>
+                            <input type="text" id="fname3" name="fname" value="">
+                            <span class="u-regstar">*</span><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="fname4">Отчество: </label>
+                        </td>
+                        <td>
+                            <input type="text" id="fname4" name="fname" value="">
+                            <span class="u-regstar">*</span><br>
+                        </td>
+                    </tr>
+                        <table class="u-registr">
+                            <tr>
+                                <td width="160px">
+                                    <label>Sex: </label>
+                                </td>
+                                <td>
+                                    <input name="man" type="radio" value="1">Муж.
+                                    <input name="woman" type="radio" value="0">Жен.
+                                    <input name="nonbinar" type="radio" value="0">Другой.
+                                </td>
+                            </tr>
+                        </table>
+                    </table>
+                    <table class="u-registr">
+                        <tr>
+                            <td width="170px">
+                                <label for="fname5">Email: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="fname5" name="fname" value="">
+                                <span class="u-regstar">*</span><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="fname6">Password: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="fname6" name="fname" value="">
+                                <span class="u-regstar">*</span><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="fname7">Repeat password: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="fname7" name="fname" value="">
+                                <span class="u-regstar">*</span><br>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="u-registr">
+                        <tr>
+                            <td width="170px">
+                                <label for="fname8">Add info: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="fname8" name="fname" value="" style="height: 100px; width: 300px">
+                            </td>
+                        </tr>
+                    </table>
+                </fomr>
+                <form class="u-center" style="padding: 25px">
+                    <button style="height: 30px; width: 100px" onclick="">Refister</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button onclick="">Задание 10 - Напишите скрипт для создания элемента согласно варианту(li в список ul; Смена местами двух соседних элементов)</button>
+        <p></p>
     </div>
 </body>
 </html>
