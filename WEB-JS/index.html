@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style-button.css">
     <link rel="stylesheet" href="style-worksheet.css">
     <script>
-        function data_time(){
+        function dataTime(){
             let data = new Date();
             let days = ['Sun','Mon','Tue','Web','Thu','Fri','Sat'];
             let hours = data.getHours();
@@ -24,9 +24,9 @@
             month = month < 10 ? '0'+month : month;
             let strTime = day + '-' + month + '-' + year + ', ' + days[day1] + ' / ' + hours + '/' + minutes + '/' + seconds + ' ' + ampm;
             document.getElementById('DT').innerHTML = strTime;
-            setInterval(data_time, 1000);
+            setInterval(dataTime, 1000);
         }
-        function cal(){
+        function calendar(){
             let html = '<div class="flex_column">';
             let days = ['Mon','Tue','Web','Thu','Fri','Sat','Sun'];
             let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -79,20 +79,20 @@
             const myElement = document.querySelector('table')
         }
 
-        function Invisible(){
+        function invisible(){
             let i = 0;
             document.getElementById('Inv').style.display = "flex";
             document.getElementById('Kostil').style.display = "none";
             let div = document.querySelectorAll(".hidden");
             let arr = new Array(div.length).fill(0).map((_,i) => i).sort(() => Math.random() - 0.5);
-            setTimeout(function (){InvisibleBlock(i,div,arr);}, 120);
+            setTimeout(function (){invisibleBlock(i,div,arr);}, 120);
         }
-        function InvisibleBlock(i, div, arr){
+        function invisibleBlock(i, div, arr){
             let rand_div = div[arr[i]];
             rand_div.style.display = "none";
             ++i;
             if (i < 7){
-                setTimeout(function (){InvisibleBlock(i,div,arr);}, 120);
+                setTimeout(function (){invisibleBlock(i,div,arr);}, 120);
             }
             else{
                 document.getElementById('Kostil').style.display = "block";
@@ -104,36 +104,48 @@
             }
         }
 
-        function create(){
-            let html = '<ul id="list">';
+        function createUl(){
+            let html = '<ul class="list">';
             document.getElementById('Cre').innerHTML = html;
-            create_li(html);
+            createLi(html);
         }
-        function create_li(html){
+        function createLi(html){
             let test = prompt("Test");
             if (test != null){
-                html += '<li>';
+                html += '<li class="test">';
                 html += test;
                 html += '</li>'
                 document.getElementById('Cre').innerHTML = html;
-                setTimeout(function(){create_li(html)}, 1);
+                setTimeout(function(){createLi(html)}, 1);
             }
             else{
-                html += '</ul>'
-                document.getElementById('Cre').innerHTML = html;
-                if (document.getElementById('list').children.length < 1){
+                let el = document.querySelector(".list");
+                let li = document.querySelectorAll(".test");
+                testMove(el, li);
+            /**html += '</ul>'
+                //document.getElementById('Cre').innerHTML = html;
+                //if (document.getElementById('list').children.length < 1){
                     return;
                 }
                 let flag = confirm("Хотите удалить элементы?");
                 if (flag){
-                    setTimeout(delete_li, 1);
+                    setTimeout(deleteLi, 1);
                 }
                 else{
                     return 0;
+                } */
+            }
+        }
+        function testMove(el, li){
+            el.onclick = function (e){
+                for (let i = 0; i < el.children.length; ++i){
+                    el.insertBefore(li[0], li[1]);
                 }
             }
         }
-        function delete_li(){
+
+
+        function deleteLi(){
             let test = prompt("Какой элемент хотите удалить? (Введите число)");
             test = Number(test);
             test -= 1;
@@ -149,20 +161,20 @@
                         let li = document.querySelector('li');
                         const parent = li.parentNode;
                         parent.removeChild(parent.children[test]);
-                        setTimeout(delete_li, 1);
+                        setTimeout(deleteLi, 1);
                     }
                     else{
                         alert("Нет такого элемента!");
-                        setTimeout(delete_li, 1);
+                        setTimeout(deleteLi, 1);
                     }
                 }
                 else{
-                    setTimeout(delete_li, 1);
+                    setTimeout(deleteLi, 1);
                 }
             }
             else{
                 alert("Введите число!");
-                setTimeout(delete_li, 1);
+                setTimeout(deleteLi, 1);
             }
         }
 
@@ -180,7 +192,7 @@
             }
         }
 
-        function folding(){
+        function folding(callback){
             document.getElementById('FOLD').style.display = "block";
             let click = document.getElementById('FOLD');
             let click1 = document.getElementById('pie');
@@ -198,27 +210,30 @@
                     rand_div.style.display = "block";
                 }
                 setTimeout(function (){prov(click1, click2, click3)},100);
+                callback(click1, click2, click3);
             }
+        }
+        function testFolding(click1, click2, click3){
             click1.onmousedown = function (e){
                 let opa = "0.8";
                 let click = document.getElementById('pie');
                 document.getElementById('pie').style.opacity = opa;
-                setTimeout(function (){Invesibility(opa, click);}, 500);
+                setTimeout(function (){invesibility(opa, click);}, 500);
             }
             click2.onmousedown = function (ev){
                 let opa = "0.8";
                 let click = document.getElementById('candy');
                 document.getElementById('candy').style.opacity = opa;
-                setTimeout(function (){Invesibility(opa, click);}, 500);
+                setTimeout(function (){invesibility(opa, click);}, 500);
             }
             click3.onmousedown = function (eve){
                 let opa = "0.8";
                 let click = document.getElementById('cake');
                 document.getElementById('cake').style.opacity = opa;
-                setTimeout(function (){Invesibility(opa, click);}, 200);
+                setTimeout(function (){invesibility(opa, click);}, 200);
             }
         }
-        function Invesibility(opa, click){
+        function invesibility(opa, click){
             if (click.style.opacity < 0.1){
                 click.style.display = "none";
             }
@@ -227,7 +242,7 @@
                 opa -= 0.2;
                 String(opa);
                 click.style.opacity = opa;
-                setTimeout(function (){Invesibility(opa, click);}, 200);
+                setTimeout(function (){invesibility(opa, click);}, 200);
             }
         }
         function prov(click1, click2, click3){
@@ -255,12 +270,12 @@
 <body style="margin: 5px; background: #FFE4B5; max-width: 960px;">
     <h1>Задания по JS</h1>
     <div>
-        <button onclick="setTimeout(data_time)">Задание 1 - Дата/Время</button>
+        <button onclick="setTimeout(dataTime)">Задание 1 - Дата/Время</button>
         <p id="DT"></p>
     </div>
 
     <div>
-        <button onclick="cal()">Задание 2 - Календарь</button>
+        <button onclick="calendar()">Задание 2 - Календарь</button>
         <p id="Cal"></p>
     </div>
 
@@ -270,7 +285,7 @@
     </div>
 
     <div>
-        <button onclick="setTimeout(Invisible)">Задание 4 - Через указанный промежуток времени 120мс удалять из видимости один из
+        <button onclick="setTimeout(invisible)">Задание 4 - Через указанный промежуток времени 120мс удалять из видимости один из
             блоков (номер блока выбирается рандомно)</button>
         <p id="Kostil"></p>
         <div id="Inv" class="u-center">
@@ -285,7 +300,7 @@
     </div>
 
     <div>
-        <button onclick="create()">Задание 5 - Напишите скрипт для создания элемента согласно варианту(li в список ul; Смена местами двух соседних элементов)</button>
+        <button onclick="createUl()">Задание 5 - Напишите скрипт для создания элемента согласно варианту(li в список ul; Смена местами двух соседних элементов)</button>
         <p id="Cre"></p>
     </div>
 
@@ -297,7 +312,7 @@
     </div>
 
     <div>
-        <button onclick="folding()">Задание 7 - Создайте меню, которое раскрывается/сворачивается при клике</button>
+        <button onclick="folding(testFolding)">Задание 7 - Создайте меню, которое раскрывается/сворачивается при клике</button>
         <p></p>
         <h2 id="FOLD">Здесь сладости (нажми меня!)</h2>
         <p id="pie" class="none">Пирожок</p>
