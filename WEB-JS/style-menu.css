@@ -1,0 +1,25 @@
+header{
+    margin-top: 0;
+}
+.floatMenu *{
+    margin: 0;
+    padding: 0;
+}
+.floatMenu ul,
+.floatMenu li{
+    list-style: none;
+}
+.floatMenu > ul{
+    display: flex;
+    justify-content: center;
+}
+.floatMenu > ul li a{
+    display: block;
+    background: white;
+    padding: 15px 30px 15px 40px;
+    font-size: 15px;
+    color: #454547;
+}
+.floatMenu > ul li{
+    border: 1px solid #000000;
+}

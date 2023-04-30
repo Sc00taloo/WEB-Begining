@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <title>Assignments JS</title>
     <link rel="stylesheet" href="style-button.css">
-    <link rel="stylesheet" href="style-worksheet.css">
+    <link rel="stylesheet" href="style-woeksheet.css">
+    <link rel="stylesheet" href="style-menu.css">
+    <script type="text/javascript" src="jQuery.js"></script>
     <script>
         function dataTime(){
             let data = new Date();
@@ -46,7 +48,7 @@
             html += '</tr>';
             for(let i = 2 - dayOfWeek; i <= 43 - dayOfWeek; ++i){
                 if ((i - 1 + dayOfWeek) % 7 == 1){
-                   html += '<tr>';
+                    html += '<tr>';
                 }
 
                 if (i == -1){
@@ -92,7 +94,7 @@
             rand_div.style.display = "none";
             ++i;
             if (i < 7){
-                setTimeout(function (){invisibleBlock(i,div,arr);}, 120);
+                setTimeout(function (){invisibleBlock(i,div,arr);}, 1200);
             }
             else{
                 document.getElementById('Kostil').style.display = "block";
@@ -122,16 +124,16 @@
                 let el = document.querySelector(".list");
                 let li = document.querySelectorAll(".test");
                 testMove(el, li);
-            /**html += '</ul>'
-                //document.getElementById('Cre').innerHTML = html;
-                //if (document.getElementById('list').children.length < 1){
+                /**html += '</ul>'
+                 //document.getElementById('Cre').innerHTML = html;
+                 //if (document.getElementById('list').children.length < 1){
                     return;
                 }
-                let flag = confirm("Хотите удалить элементы?");
-                if (flag){
+                 let flag = confirm("Хотите удалить элементы?");
+                 if (flag){
                     setTimeout(deleteLi, 1);
                 }
-                else{
+                 else{
                     return 0;
                 } */
             }
@@ -262,92 +264,146 @@
 
         function anketa(){
             document.getElementById("ANK").style.display = "block";
+            let allFname = document.querySelectorAll(".fname5");
+            allFname.forEach(function(el){
+                el.addEventListener("input", function(){
+                    this.value = this.value.replace(/[^a-zA-Z=?!@.0-9+-]+$/, '');
+                })
+            });
+
+            let rus = document.querySelectorAll(".rus");
+            rus.forEach(function(el){
+                el.addEventListener("input", function (){
+                    this.value = this.value.replace(/[^а-яА-Я=?!@.0-9+-]+$/, '');
+                })
+            });
+
+            document.getElementById("button").addEventListener('click', function(e) {
+                let flag = new Boolean(true);
+                let regexMail = /[^a-zA-Z0-9._%+-]{2,99}@[a-zA-Z0-9-]+.[A-Z]{2,4}$/;
+                let fname1 = document.getElementById('fname1');
+                let fname2 = document.getElementById('fname2');
+                let fname3 = document.getElementById('fname3');
+                let fname4 = document.getElementById('fname4');
+                let fname5 = document.getElementById('fname5');
+                let fname6 = document.getElementById('fname6');
+                let fname7 = document.getElementById('fname7');
+                if(regexMail.test(fname5.value)){}
+                    else{alert('Неверный формат почты!'); fname5.style.backgroundColor = "red"; flag = false}
+                if(fname6.value == fname7.value){}
+                    else{alert('Пароли не одинаковые!'); fname6.style.backgroundColor = "red"; fname7.style.backgroundColor = "red"; flag = false}
+                if(fname6.value.length < 4){alert('Короткий пароль! Минимум 4 символа'); fname6.style.backgroundColor = "red"; fname7.style.backgroundColor = "red"; flag = false}
+                if(fname1.value.length < 1){fname1.style.background = "red"; flag = false}
+                if(fname2.value.length < 1){fname2.style.background = "red"; flag = false}
+                if(fname3.value.length < 1){fname3.style.background = "red"; flag = false}
+                if(fname4.value.length < 1){fname4.style.background = "red"; flag = false}
+                if(document.getElementById('man').checked){}
+                    else if(document.getElementById('woman').checked){}
+                    else{alert('Выберете пол!'); flag = false}
+                if(flag){
+                    alert('Регистрация завершина!'); clear();
+                }
+            });
         }
+        function clear(){
+            document.getElementById('fname1').value = "";
+            document.getElementById('fname2').value = "";
+            document.getElementById('fname3').value = "";
+            document.getElementById('fname4').value = "";
+            document.getElementById('fname5').value = "";
+            document.getElementById('fname6').value = "";
+            document.getElementById('fname7').value = "";
+            document.getElementById('comm').value = "";
+            document.getElementById('man').checked = 0;
+            document.getElementById('woman').checked = 0;
+        }
+        let radios = document.querySelectorAll('input[type=radio][name="sex"]');
+        radios.forEach(radio => radio.addEventListener('change'));
 
 
     </script>
 </head>
 <body style="margin: 5px; background: #FFE4B5; max-width: 960px;">
-    <h1>Задания по JS</h1>
-    <div>
-        <button onclick="setTimeout(dataTime)">Задание 1 - Дата/Время</button>
-        <p id="DT"></p>
-    </div>
+<h1>Задания по JS</h1>
+<div>
+    <button onclick="setTimeout(dataTime)">Задание 1 - Дата/Время</button>
+    <p id="DT"></p>
+</div>
 
-    <div>
-        <button onclick="calendar()">Задание 2 - Календарь</button>
-        <p id="Cal"></p>
-    </div>
+<div>
+    <button onclick="calendar()">Задание 2 - Календарь</button>
+    <p id="Cal"></p>
+</div>
 
-    <div>
-        <button onclick="dom()">Задание 3 - Нахождение элементов в DOM – дереве (Только форм)</button>
-        <p id="DOM"></p>
-    </div>
+<div>
+    <button onclick="dom()">Задание 3 - Нахождение элементов в DOM – дереве (Только форм)</button>
+    <p id="DOM"></p>
+</div>
 
-    <div>
-        <button onclick="setTimeout(invisible)">Задание 4 - Через указанный промежуток времени 120мс удалять из видимости один из
-            блоков (номер блока выбирается рандомно)</button>
-        <p id="Kostil"></p>
-        <div id="Inv" class="u-center">
-            <div class="array hidden">0</div>
-            <div class="array hidden">1</div>
-            <div class="array hidden">2</div>
-            <div class="array hidden">3</div>
-            <div class="array hidden">4</div>
-            <div class="array hidden">5</div>
-            <div class="array hidden">6</div>
-        </div>
+<div>
+    <button onclick="setTimeout(invisible)">Задание 4 - Через указанный промежуток времени 120мс удалять из видимости один из
+        блоков (номер блока выбирается рандомно)</button>
+    <p id="Kostil"></p>
+    <div id="Inv" class="u-center">
+        <div class="array hidden">0</div>
+        <div class="array hidden">1</div>
+        <div class="array hidden">2</div>
+        <div class="array hidden">3</div>
+        <div class="array hidden">4</div>
+        <div class="array hidden">5</div>
+        <div class="array hidden">6</div>
     </div>
+</div>
 
-    <div>
-        <button onclick="createUl()">Задание 5 - Напишите скрипт для создания элемента согласно варианту(li в список ul; Смена местами двух соседних элементов)</button>
-        <p id="Cre"></p>
-    </div>
+<div>
+    <button onclick="createUl()">Задание 5 - Напишите скрипт для создания элемента согласно варианту(li в список ul; Смена местами двух соседних элементов)</button>
+    <p id="Cre"></p>
+</div>
 
-    <div>
-        <button onclick="move()">Задание 6 - Организовать обработку события, согласно действию: Наведение курсора мыши на объект; Сдвиг объекта на 20px влево</button>
-        <p align="right">
-            <img id="MOVE" class="u-image-maxwell" src="Pictures/maxwell.png" style="display: none;">
-        </p>
-    </div>
+<div>
+    <button onclick="move()">Задание 6 - Организовать обработку события, согласно действию: Наведение курсора мыши на объект; Сдвиг объекта на 20px влево</button>
+    <p align="right">
+        <img id="MOVE" class="u-image-maxwell" src="Pictures/maxwell.png" style="display: none;">
+    </p>
+</div>
 
-    <div>
-        <button onclick="folding(testFolding)">Задание 7 - Создайте меню, которое раскрывается/сворачивается при клике</button>
+<div>
+    <button onclick="folding(testFolding)">Задание 7 - Создайте меню, которое раскрывается/сворачивается при клике</button>
+    <p></p>
+    <h2 id="FOLD">Здесь сладости (нажми меня!)</h2>
+    <p id="pie" class="none">Пирожок</p>
+    <p id="candy" class="none">Конфеты</p>
+    <p id="cake" class="none">Тортик</p>
+    <h3 id="h3">Сладости закончились =( </h3>
+</div>
+
+<div>
+    <button onclick="screen_pic()">Задание 8 - Используя функцию setTimeout и статический фильтр alpha, создайте картинку, которая будет
+        плавно проявляться на экране (как если бы использовался фильтр blendtrans).
+        Необходимо, чтобы при наведении указателя мыши картинка плавно становилась прозрачнее и
+        проявлялся текст, расположенный за картинкой. Как только указатель мыши выйдет за пределы
+        картинки, она должна снова плавно стать непрозрачной.</button>
+    <div id="">
+        <a id="sloi1" style="display: none">Вас заметили</a>
+        <img id="PT" class="sloi2" src="Pictures/Eyebrow.jpeg" style="display: none;">
         <p></p>
-        <h2 id="FOLD">Здесь сладости (нажми меня!)</h2>
-        <p id="pie" class="none">Пирожок</p>
-        <p id="candy" class="none">Конфеты</p>
-        <p id="cake" class="none">Тортик</p>
-        <h3 id="h3">Сладости закончились =( </h3>
     </div>
+</div>
 
-    <div>
-        <button onclick="screen_pic()">Задание 8 - Используя функцию setTimeout и статический фильтр alpha, создайте картинку, которая будет
-            плавно проявляться на экране (как если бы использовался фильтр blendtrans).
-            Необходимо, чтобы при наведении указателя мыши картинка плавно становилась прозрачнее и
-            проявлялся текст, расположенный за картинкой. Как только указатель мыши выйдет за пределы
-            картинки, она должна снова плавно стать непрозрачной.</button>
-        <div id="">
-            <a id="sloi1" style="display: none">Вас заметили</a>
-            <img id="PT" class="sloi2" src="Pictures/Eyebrow.jpeg" style="display: none;">
-            <p></p>
-        </div>
-    </div>
-
-    <div>
-        <button onclick="anketa()">Задание 9 - Регулярные выражения</button>
-        <p></p>
-        <div id="ANK" class="u-background" style="display: none">
-            <h2 class="u-center">Регистрация</h2>
-            <div class="flex_column">
-                <fomr action="">
-                    <table class="u-registr">
+<div>
+    <button onclick="anketa()">Задание 9 - Регулярные выражения</button>
+    <p></p>
+    <div id="ANK" class="u-background" style="display: none">
+        <h2 class="u-center">Регистрация</h2>
+        <div class="flex_column">
+            <fomr action="">
+                <table class="u-registr">
                     <tr>
                         <td width="170px" valign="top">
                             <label for="fname1">Login: </label>
                         </td>
                         <td>
-                            <input type="text" id="fname1" name="fname" value="">
+                            <input type="text" id="fname1" class="fname5 fname" name="fname" value="" onfocus="this.style.backgroundColor = '#fff'">
                             <span class="u-regstar">*</span><br>
                         </td>
                     </tr>
@@ -356,7 +412,7 @@
                             <label for="fname2">Фамилия: </label>
                         </td>
                         <td>
-                            <input type="text" id="fname2" name="fname" value="">
+                            <input type="text" id="fname2" class="rus fname" name="fname" value="" onfocus="this.style.backgroundColor = '#fff'">
                             <span class="u-regstar">*</span><br>
                         </td>
                     </tr>
@@ -365,7 +421,7 @@
                             <label for="fname3">Имя: </label>
                         </td>
                         <td>
-                            <input type="text" id="fname3" name="fname" value="">
+                            <input type="text" id="fname3" class="rus fname" name="fname" value="" onfocus="this.style.backgroundColor = '#fff'">
                             <span class="u-regstar">*</span><br>
                         </td>
                     </tr>
@@ -374,73 +430,85 @@
                             <label for="fname4">Отчество: </label>
                         </td>
                         <td>
-                            <input type="text" id="fname4" name="fname" value="">
+                            <input type="text" id="fname4" class="rus fname" name="fname" value="" onfocus="this.style.backgroundColor = '#fff'">
                             <span class="u-regstar">*</span><br>
                         </td>
                     </tr>
-                        <table class="u-registr">
-                            <tr>
-                                <td width="160px">
-                                    <label>Sex: </label>
-                                </td>
-                                <td>
-                                    <input name="man" type="radio" value="1">Муж.
-                                    <input name="woman" type="radio" value="0">Жен.
-                                    <input name="nonbinar" type="radio" value="0">Другой.
-                                </td>
-                            </tr>
-                        </table>
-                    </table>
                     <table class="u-registr">
                         <tr>
-                            <td width="170px">
-                                <label for="fname5">Email: </label>
+                            <td width="160px">
+                                <label>Sex: </label>
                             </td>
-                            <td>
-                                <input type="text" id="fname5" name="fname" value="">
-                                <span class="u-regstar">*</span><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="fname6">Password: </label>
-                            </td>
-                            <td>
-                                <input type="text" id="fname6" name="fname" value="">
-                                <span class="u-regstar">*</span><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="fname7">Repeat password: </label>
-                            </td>
-                            <td>
-                                <input type="text" id="fname7" name="fname" value="">
-                                <span class="u-regstar">*</span><br>
+                            <td  id="sex">
+                                <input id="man" name="sex" type="radio" value="">Муж.
+                                <input id="woman" name="sex" type="radio" value="">Жен.
                             </td>
                         </tr>
                     </table>
-                    <table class="u-registr">
-                        <tr>
-                            <td width="170px">
-                                <label for="fname8">Add info: </label>
-                            </td>
-                            <td>
-                                <input type="text" id="fname8" name="fname" value="" style="height: 100px; width: 300px">
-                            </td>
-                        </tr>
-                    </table>
-                </fomr>
-                <form class="u-center" style="padding: 25px">
-                    <button style="height: 30px; width: 100px" onclick="">Refister</button>
-                </form>
-            </div>
+                </table>
+                <table class="u-registr">
+                    <tr>
+                        <td width="170px">
+                            <label for="fname5">Email: </label>
+                        </td>
+                        <td>
+                            <input type="text" id="fname5" class="fname5" name="fname" value="" onfocus="this.style.backgroundColor = '#fff'">
+                            <span class="u-regstar">*</span><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="fname6">Password: </label>
+                        </td>
+                        <td>
+                            <input type="password" id="fname6" class="pass" name="fname" value="" onfocus="this.style.backgroundColor = '#fff'">
+                            <span class="u-regstar">*</span><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="fname7">Repeat password: </label>
+                        </td>
+                        <td>
+                            <input type="password" id="fname7" class="pass" name="fname" value="" onfocus="this.style.backgroundColor = '#fff'">
+                            <span class="u-regstar">*</span><br>
+                        </td>
+                    </tr>
+                </table>
+                <table class="u-registr">
+                    <tr>
+                        <td width="170px">
+                            <label>Add info: </label>
+                        </td>
+                        <td>
+                            <textarea id="comm" name="comment" cols="40" rows="8"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <table class="u-center">
+                    <tr>
+                        <td width="10%" height="60px">
+                            <button style="height: 30px; width: 100px;" id="button">Register</button>
+                        </td>
+                    </tr>
+                </table>
+            </fomr>
         </div>
     </div>
+</div>
 
-    <div>
-        <button onclick="">Задание 10 - Напишите скрипт для создания элемента согласно варианту(li в список ul; Смена местами двух соседних элементов)</button>
-        <p></p>
-    </div>
+<div>
+    <button onclick="">Задание 10 - Напишите скрипт для создания элемента согласно варианту(li в список ul; Смена местами двух соседних элементов)</button>
+    <p></p>
+    <header>
+        <div class="floatMenu">
+            <ul>
+                <li><a href="#"><i class="fa fa-"></i>Menu1</a></li>
+                <li><a href="#"><i class="fa fa-"></i>Menu2</a></li>
+                <li><a href="#"><i class="fa fa-"></i>Menu3</a></li>
+            </ul>
+        </div>
+    </header>
+</div>
 </body>
 </html>
