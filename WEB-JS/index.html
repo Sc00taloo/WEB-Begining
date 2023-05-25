@@ -262,6 +262,14 @@
 
         function anketa(){
             document.getElementById("ANK").style.display = "block";
+            document.querySelector('.fname5').addEventListener('input', function() {
+                this.value = this.value.replace(/[^a-zA-Z-_=?!#%*@.0-9]+$/, '')
+            });
+            for ( let i = 0; i < input.length; i++ ) {
+                if (input[i].value === '')
+                    return alert("Заполните все поля")
+            }
+            return alert("Все поля заполнены")
         }
 
 
@@ -339,7 +347,7 @@
         <p></p>
         <div id="ANK" class="u-background" style="display: none">
             <h2 class="u-center">Регистрация</h2>
-            <div class="flex_column">
+            <div class="flex_column form">
                 <fomr action="">
                     <table class="u-registr">
                     <tr>
@@ -397,7 +405,7 @@
                                 <label for="fname5">Email: </label>
                             </td>
                             <td>
-                                <input type="text" id="fname5" name="fname" value="">
+                                <input type="text" id="fname5" class="fname5" name="fname" value="">
                                 <span class="u-regstar">*</span><br>
                             </td>
                         </tr>
@@ -432,7 +440,7 @@
                     </table>
                 </fomr>
                 <form class="u-center" style="padding: 25px">
-                    <button style="height: 30px; width: 100px" onclick="">Refister</button>
+                    <button style="height: 30px; width: 100px">Register</button>
                 </form>
             </div>
         </div>

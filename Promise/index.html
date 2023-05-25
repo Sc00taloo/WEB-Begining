@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Promise</title>
+    <meta charset="utf-8">
+    <script>
+        const DEFAULT_TIMEOUT = 500;
+        const getMovieTicket = (movie) =>
+            new Promise((resolve,reject) => {
+                setTimeout(() => {
+                    if(movie.payment >= movie.ticket_price){
+                        resolve(`Success! Payment has been processed.`);
+                    }else{
+                        reject(`Error: Payment less than ticket price.`);
+                    }
+                },300)
+            });
+        const selectMovie = (selection) =>
+            new Promise((resolve,reject) => {
+                setTimeout(() => {
+                    if(selection.time_taken <=
+                        DEFAULT_TIMEOUT){
+                        resolve(selection.title)
+                    }else{
+                        reject(`Your session has expired.`)
+                    }
+                },DEFAULT_TIMEOUT)
+            });
+        const printReceipt = (payment_details, status) =>
+            new Promise((resolve,reject) => {
+                setTimeout(() => {
+                    if(status === 'OK'){
+                        resolve('Keep this as your receipt | ' +
+                            payment_details)
+                    }else{
+                        reject('Error: The printer has encountered a jam.')
+                    }
+                },100)
+            })
+
+        const movie_obj = {
+            payment: 21.25,
+            ticket_price: 21.00,
+            title: ' Миссия невыполнима 5 ',
+            time_taken: 499
+        }
+
+        const promise1 = () =>
+            new Promise((resolve,reject) => {setTimeout(() => {
+                resolve(' Промис 1 записывается.')
+            },200)
+            })
+        const promise2 = () =>
+            new Promise((resolve,reject) => { setTimeout(() => {
+                resolve(' Промис 2 записывается.')
+            },400)
+            })
+        const promise3 = () =>
+            new Promise((resolve,reject) => { setTimeout(() => {
+                resolve(' Промис 3 записывается.')
+            },100)
+            })
+        Promise.all([promise1(),promise2(),promise3()])
+            .then(([p1,p2,p3]) => {console.log(`${p1}\n${p2}\n${p3}`)
+            })
+
+        Promise.all([selectMovie(movie_obj),getMovieTicket(movie_obj)])
+            .then(([movie,response]) => {
+            console.log(`Movie selected: - ${movie}`)
+            console.log(response);
+            return printReceipt(response,'OK')
+        })
+            .then(receipt => {console.log(receipt)
+            })
+            .catch(err => {console.error(err);
+            })
+
+        function getMovieTicketNPro(movie,fulfillMovieTicket,rejectMovieTicket){
+            setTimeout(() => {
+                if(movie.payment >= movie.ticket_price){
+                    fulfillMovieTicket(`Success! Payment has been processed.`);
+                }else{
+                    rejectMovieTicket(`Error: Payment less than ticket price.`);
+                }
+            },300)
+        }
+        function selectMovieNPro(selection,selectedMovie,rejectMovieSelection){
+            setTimeout(() => {
+                if(selection.time_taken <= DEFAULT_TIMEOUT){
+                    selectedMovie(selection.title)
+                }else{
+                    rejectMovieSelection(`Your session has expired.`)
+                }
+            },DEFAULT_TIMEOUT)
+        }
+        selectMovieNPro(movie_obj,(movie) => {
+                console.log(`Movie selected: ${movie.title}`);
+                getMovieTicketNPro(movie_obj,(response) => {
+                    console.log(response);
+                    }, (err) => {console.error(err); }) // getMovieTicket закончилась
+            }, (err) => {console.error(err);}) // selectMovie закончилась
+
+
+        function test(){
+            const promise = new Promise((resolve, reject) => {
+                const randomNumber = Math.random();
+                if(randomNumber < .7) {
+                    resolve('Все прошло отлично!');
+                } else {
+                    reject(new Error('Что-то пошло не так'));
+                }
+            });
+            promise.then((data) => {console.log(data);
+                }, (error) => {
+                    console.log(error);
+                }
+            );
+        }
+        function doSomethingOldStyle(successCallback, failureCallback) {
+            console.log("Готово.");
+            if (Math.random() > .5) {
+                successCallback("Успех")
+            } else {
+                failureCallback("Ошибка")
+            }
+        }
+        function doSomething() {
+            const promise =  new Promise((resolve, reject) => {
+                console.log("Готово.");
+                if (Math.random() > .5) {
+                    resolve("Успех")
+                } else {
+                    reject("Ошибка")
+                }
+            })
+            promise.then(successCallback, failureCallback);
+        }
+
+        function successCallback(result) {
+            console.log("Успешно завершено с результатом " + result);
+        }
+        function failureCallback(error) {
+            console.log("Завершено с ошибкой " + error);
+        }
+
+        function myFunc(cb){
+            let err = true;
+            // имитируем асинхронную операцию
+            setTimeout(function(){
+                cb(err);
+            }, 10);
+        }
+
+        //try {
+        //    myFunc(function(err){
+        //        if (err) throw new Error('Oops');
+        //    });
+        //   alert('Всё как бы хорошо!');
+        //} catch(e) {
+        //    alert(e.message);
+        //}
+
+        function myFunc(){
+            let promise = new Promise((resolve, reject) => {
+                let err = true;
+
+                // имитируем асинхронную операцию
+                setTimeout(() => {
+                    if (err) {
+                        reject('Ooops!');
+                    } else {
+                        resolve(123);
+                    }
+                }, 10);
+            });
+
+            return promise;
+        }
+
+        //myFunc()
+        //   .then(data => {
+        //        alert('Всё точно хорошо!');
+        //    })
+        //    .catch(e => {
+        //        alert(e);
+        //    });
+
+    </script>
+</head>
+<body>
+    <div>
+        <button type="submit" onclick="test()">Нажми 1</button>
+        <button type="submit" onclick="doSomethingOldStyle(successCallback, failureCallback)">Нажми 2</button>
+        <button type="submit" onclick="doSomething()">Нажми 3</button>
+    </div>
+</body>
+</html>
